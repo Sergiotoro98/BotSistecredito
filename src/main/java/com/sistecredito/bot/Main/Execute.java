@@ -19,7 +19,7 @@ public class Execute {
 //        System.setProperty("webdriver.chrome.driver", "D:\\chrome\\chromedriver-win64\\chromedriver.exe");
 
         /*Linux*/
-        System.setProperty("webdriver.chrome.driver", "/home/adminapp/pruebasmichell/sistecredito/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "/opt/robotmesasdbapp/sistecredito/chromedriver");
 
         WebDriver driver;
         ChromeOptions options = new ChromeOptions();
@@ -37,7 +37,7 @@ public class Execute {
         try{
             /*Abre Navegador*/
             driver.get("https://csm3.serviceaide.com/#login");
-            Thread.sleep(3000);
+            Thread.sleep(5000);
 
             /*Inicio de Sesion*/
             driver.findElement(
@@ -51,7 +51,7 @@ public class Execute {
                     .click();
 
 
-            Thread.sleep(15000);
+            Thread.sleep(20000);
 
             /*Busqueda del Ticket en Cola*/
             WebElement ticket;
@@ -72,7 +72,7 @@ public class Execute {
 
                 System.out.println(validation);
                 actions.doubleClick(ticket).perform();
-                Thread.sleep(12000);
+                Thread.sleep(15000);
 
                 /*Registro de trabajo*/
                 driver.findElement(
@@ -81,12 +81,12 @@ public class Execute {
                 Thread.sleep(1000);
 
                 /*Texto*/
-//                driver.findElement(
-//                                By.xpath("/html/body/div[3]/div[2]/div[1]/div/div[2]/div[2]/div/div[2]/div/div/div/div[1]/div/div[3]/div[2]/div[1]/div[2]/div[2]/div[2]/div/div[1]/div[1]/div[1]/div[1]/div/div/table/tbody/tr[1]/td[2]/textarea"))
-//                        .sendKeys("Nombre analista o soporte: \n" +
-//                                "Grupo de gestión: GTI - Base de datos\n" +
-//                                "Descarte y/o pruebas: N/A\n" +
-//                                "Detalles de la solución:");
+                driver.findElement(
+                                By.xpath("/html/body/div[3]/div[2]/div[1]/div/div[2]/div[2]/div/div[2]/div/div/div/div[1]/div/div[3]/div[2]/div[1]/div[2]/div[2]/div[2]/div/div[1]/div[1]/div[1]/div[1]/div/div/table/tbody/tr[1]/td[2]/textarea"))
+                        .sendKeys("Nombre analista o soporte: \n" +
+                                "Grupo de gestión: GTI - Base de datos\n" +
+                                "Descarte y/o pruebas: N/A\n" +
+                                "Detalles de la solución:");
 
                 /*Actions*/
                 driver.findElement(
@@ -96,7 +96,8 @@ public class Execute {
 
                 /*Texto Nuevamente*/
                 driver.findElement(
-                          By.xpath("/html/body/div[3]/div[2]/div[1]/div/div[2]/div[2]/div/div[2]/div/div/div/div[1]/div/div[3]/div[2]/div[1]/div[2]/div[2]/div[2]/div/div[1]/div[1]/div[1]/div[1]/div/div/table/tbody/tr[1]/td[2]/textarea")).click();
+                          By.xpath("/html/body/div[3]/div[2]/div[1]/div/div[2]/div[2]/div/div[2]/div/div/div/div[1]/div/div[3]/div[2]/div[1]/div[2]/div[2]/div[2]/div/div[1]/div[1]/div[1]/div[1]/div/div/table/tbody/tr[1]/td[2]/textarea"))
+                        .click();
                 Thread.sleep(2000);
 
                 /*Tomar Propiedad*/
@@ -125,7 +126,7 @@ public class Execute {
                         "        }\n" +
                         "    }\n" +
                         "});");
-                Thread.sleep(2000);
+                Thread.sleep(5000);
                 System.out.println("Propiedad del caso Tomada");
 
                 /*Cerrar Sesión*/
@@ -162,15 +163,15 @@ public class Execute {
                 System.out.println("Cerrando Sesión");
 
                 /*Cerrar Navegador*/
-                Thread.sleep(3000);
+                Thread.sleep(4000);
                 driver.manage().deleteAllCookies();
                 System.out.println("Proceso Exitoso");
-                Thread.sleep(4000);
+                Thread.sleep(2000);
                 driver.quit();
 
             }else {
                 JavascriptExecutor js = (JavascriptExecutor) driver;
-                System.out.println("No hay casos en Cola");
+                System.out.println("No hay casos pendientes");
 
                 /*Cerrar Sesión*/
                 driver.findElement(
@@ -203,7 +204,6 @@ public class Execute {
                         "    }\n" +
                         "});");
                 System.out.println("Cerrando Sesión Sin Casos");
-
                 Thread.sleep(3000);
                 driver.manage().deleteAllCookies();
                 Thread.sleep(2000);
